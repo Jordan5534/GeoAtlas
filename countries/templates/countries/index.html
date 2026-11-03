@@ -4,9 +4,9 @@
 <html lang="en">
     <head>
         <title>GeoAtlas</title>
-        <script src="{% static 'countries/js/map.js' %}"></script>
+        <script type="module" src="{% static 'countries/js/map.js' %}"></script>
     </head>
-    <body style="background-color: #78B9D4;">
+    <body style="background-color: #78B9D4; overflow-y: hidden;">
         <div id="world-map-container"></div>
     </body>
 </html>
