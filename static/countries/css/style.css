@@ -1,6 +1,7 @@
 body {
     background-color: #78B9D4;
     overflow-y: hidden;
+    margin: 0;
 }
 
 #back-button {
@@ -26,4 +27,24 @@ body {
 
 #back-button:hover {
     background-color: #285B78;
+}
+
+#world-map-container {
+    min-height: 100dvh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+@media (max-width: 600px) {
+    #world-map-container {
+        justify-content: flex-start;
+        overflow-x: auto;
+    }
+    
+    #world-map-container svg {
+        width: 900px;
+        max-width: none;
+        flex-shrink: 0;
+    }
 }
