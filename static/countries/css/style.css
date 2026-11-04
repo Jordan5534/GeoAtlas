@@ -36,6 +36,11 @@ body {
     justify-content: center;
 }
 
+#world-map-container svg {
+    width: 100%;
+    height: 100dvh;
+}
+
 @media (max-width: 600px) {
     #world-map-container {
         justify-content: flex-start;
@@ -43,8 +48,14 @@ body {
     }
     
     #world-map-container svg {
-        width: 900px;
+        width: 1200px;
         max-width: none;
         flex-shrink: 0;
     }
+}
+
+#world-map path {
+    stroke: #F2F5F4;
+    stroke-width: 1px;
+    vector-effect: non-scaling-stroke;
 }
