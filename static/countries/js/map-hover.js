@@ -69,7 +69,7 @@ export function initializeMapHover(worldMap, countryData) {
                         });
                     }
                 } 
-            } else {
+            } else if (currentView === 'continent') {
                 if (activeContinent !== null) {
                     const continentPaths = worldMap.querySelectorAll(`path[data-continent='${activeContinent}'`);
                     continentPaths.forEach((path) => {

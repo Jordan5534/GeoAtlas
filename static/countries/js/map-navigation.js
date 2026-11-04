@@ -17,10 +17,21 @@ export function initializeNav(worldMap) {
 
     const backButton = document.getElementById('back-button');
     backButton.addEventListener('click', () => {
-        worldMap.dataset.view = 'world';
-        delete worldMap.dataset.selectedContinent;
-        animateToViewBox(worldMap, originalViewBox);
-        backButton.style.display = 'none';
+        const currentView = worldMap.dataset.view;
+
+        if (currentView === 'country') {
+            worldMap.dataset.view = 'continent';
+            backButton.textContent = '↩ Back to World';
+            const selectedContinent = worldMap.dataset.selectedContinent; 
+            const coords = continentViews[selectedContinent];
+            zoomToContinent(worldMap, coords);
+
+        } else if (currentView === 'continent') {
+            worldMap.dataset.view = 'world';
+            delete worldMap.dataset.selectedContinent;
+            animateToViewBox(worldMap, originalViewBox);
+            backButton.style.display = 'none';
+        }
     });
 
     worldMap.addEventListener('click', (event) => {
@@ -40,6 +51,11 @@ export function initializeNav(worldMap) {
                 }
             } else if (currentView === 'continent') {
                 if (clickedContinent === worldMap.dataset.selectedContinent) {
+                    worldMap.dataset.view = 'country';
+                    const clickedCountry = event.target;
+                    clickedCountry.style.removeProperty('fill');
+
+                    backButton.textContent = '↩ Back to Continent';
                     zoomToCountry(worldMap, event.target);
                 }
             }

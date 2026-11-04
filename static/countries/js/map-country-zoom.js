@@ -1,9 +1,12 @@
 import { animateToViewBox } from "./map-animate.js";
 
 export function zoomToCountry(worldMap, countryPath) {
-    console.log(countryPath.id)
-    const countryBox = countryPath.getBBox();
-    console.log(countryBox);
+    const countryID = countryPath.id;
+    const countryZoomOverrides = {
+        'fr': {x: 974, y: 294, width: 79, height: 55},
+        'ru': {x: 1290, y: 155, width: 560, height: 180}};
+        
+    const countryBox = countryZoomOverrides[countryID] ?? countryPath.getBBox();
 
     const centerX = countryBox.x + (countryBox.width / 2);
     const centerY = countryBox.y + (countryBox.height / 2);
@@ -26,12 +29,6 @@ export function zoomToCountry(worldMap, countryPath) {
     const viewY = centerY - (zoomHeight / 2);
 
     const targetViewBox = `${viewX} ${viewY} ${zoomWidth} ${zoomHeight}`;
-
-    console.log(centerX);
-    console.log(centerY);
-    console.log(mapAspectRatio);
-    console.log(countryAspectRatio);
-    console.log(targetViewBox);
 
     animateToViewBox(worldMap, targetViewBox);
 }
