@@ -13,17 +13,24 @@ export function initializeNav(worldMap) {
 
     const backButton = document.getElementById('back-button');
     backButton.addEventListener('click', () => {
+        worldMap.dataset.view = 'world';
+        delete worldMap.dataset.selectedContinent;
         animateToViewBox(worldMap, originalViewBox);
         backButton.style.display = 'none';
     });
 
     worldMap.addEventListener('click', (event) => {
         if (event.target.matches('path')) {
+            const currentView = worldMap.dataset.view;
             const clickedContinent = event.target.dataset.continent;
             const coords = continentViews[clickedContinent];
-            if (coords) {
-                animateToViewBox(worldMap, coords);
-                backButton.style.display = 'block';
+            if (currentView === 'world'){
+                if (coords) {
+                    worldMap.dataset.view = 'continent';
+                    worldMap.dataset.selectedContinent = clickedContinent;
+                    animateToViewBox(worldMap, coords);
+                    backButton.style.display = 'block';
+                }
             }
         }
     });

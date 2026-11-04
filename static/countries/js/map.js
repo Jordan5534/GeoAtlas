@@ -16,6 +16,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 })
                 .then(countryData => {
                     const worldMap = document.getElementById('world-map')
+                    worldMap.dataset.view = 'world'
                     initializeMapHover(worldMap, countryData)
                     initializeNav(worldMap)
                 })
