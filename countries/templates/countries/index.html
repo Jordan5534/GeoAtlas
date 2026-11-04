@@ -5,8 +5,10 @@
     <head>
         <title>GeoAtlas</title>
         <script type="module" src="{% static 'countries/js/map.js' %}"></script>
+        <link rel="stylesheet" href="{% static 'countries/css/style.css' %}">
     </head>
-    <body style="background-color: #78B9D4; overflow-y: hidden;">
+    <body>
         <div id="world-map-container"></div>
+        <button id="back-button" type="button">↩ Back to World</button>
     </body>
 </html>

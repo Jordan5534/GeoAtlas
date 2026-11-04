@@ -1,20 +1,29 @@
+import { animateToViewBox } from "./map-animate.js";
+
 export function initializeNav(worldMap) {
     const continentViews = {
-        'EU': '850, 200, 375, 500', 
-        'AS': '1100, 220, 840, 500', 
-        'SA': '300, 515, 750, 500',
-        'AF': '675, 365, 825, 500',
-        'OC': '1600, 590, 500, 500',
-        'NA': '50, 150, 800, 500'
+        'EU': '850 200 375 500', 
+        'AS': '1100 220 840 500', 
+        'SA': '300 515 750 500',
+        'AF': '675 365 825 500',
+        'OC': '1600 590 500 500',
+        'NA': '50 150 800 500'
     };
+    const originalViewBox = worldMap.getAttribute('viewBox');
 
-    const viewBox = worldMap.getAttribute('viewBox');
+    const backButton = document.getElementById('back-button');
+    backButton.addEventListener('click', () => {
+        animateToViewBox(worldMap, originalViewBox);
+        backButton.style.display = 'none';
+    });
+
     worldMap.addEventListener('click', (event) => {
         if (event.target.matches('path')) {
             const clickedContinent = event.target.dataset.continent;
             const coords = continentViews[clickedContinent];
             if (coords) {
-                worldMap.setAttribute('viewBox', coords);
+                animateToViewBox(worldMap, coords);
+                backButton.style.display = 'block';
             }
         }
     });
