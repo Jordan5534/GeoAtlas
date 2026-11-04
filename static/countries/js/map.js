@@ -12,13 +12,19 @@ document.addEventListener('DOMContentLoaded', () => {
             map_container.innerHTML = svgText;
             fetch('/static/countries/data/countries.min.json')
                 .then(response => {
-                    return response.json()
+                    return response.json();
                 })
                 .then(countryData => {
-                    const worldMap = document.getElementById('world-map')
-                    worldMap.dataset.view = 'world'
-                    initializeMapHover(worldMap, countryData)
-                    initializeNav(worldMap)
-                })
-        })
-})
+                    fetch('/static/countries/data/geoguessr-countries.json')
+                        .then(response => {
+                            return response.json();
+                        })
+                        .then(geoguessrCountries => {
+                            const worldMap = document.getElementById('world-map');
+                            worldMap.dataset.view = 'world';
+                            const clearHighlights = initializeMapHover(worldMap, countryData, geoguessrCountries);
+                            initializeNav(worldMap, geoguessrCountries, clearHighlights);
+                        });
+                });
+        });
+});

@@ -1,5 +1,5 @@
 // Hover Logic
-export function initializeMapHover(worldMap, countryData) {
+export function initializeMapHover(worldMap, countryData, geoguessrCountries) {
     let activeCountry = null;
     let activeContinent = null;
     let resetTimeout = null;
@@ -37,9 +37,31 @@ export function initializeMapHover(worldMap, countryData) {
         }
     }
 
+    function clearHighlights() {
+        if (resetTimeout != null) {
+            clearTimeout(resetTimeout);
+            resetTimeout = null;
+        }
+        if (activeCountry != null) {
+            activeCountry.style.removeProperty('fill');
+            activeCountry = null;
+        }
+        if (activeContinent != null) {
+            worldMap.querySelectorAll(`path[data-continent='${activeContinent}'`).forEach((target) => {
+                target.style.removeProperty('fill');
+            });
+            activeContinent = null;
+        }
+    }
+
     worldMap.addEventListener('mouseover', (event) => {
         if (event.target.matches('path')) {
             const currentView = worldMap.dataset.view;
+            const clickedCountryID = event.target.id.toUpperCase();
+            if (!Object.hasOwn(geoguessrCountries, clickedCountryID) && currentView === 'continent') {
+                scheduleHighlightReset();
+                return;
+            }
             const hoveredContinent = event.target.dataset.continent;
             const selectedContinent = worldMap.dataset.selectedContinent;
             if (hoveredContinent !== selectedContinent && currentView === 'continent') {
@@ -92,4 +114,5 @@ export function initializeMapHover(worldMap, countryData) {
     worldMap.addEventListener('mouseleave', () => {
         scheduleHighlightReset();
     });
+    return clearHighlights;
 }
