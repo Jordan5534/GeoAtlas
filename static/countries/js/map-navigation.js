@@ -11,17 +11,42 @@ export function initializeNav(worldMap, geoguessrCountries, clearHighlights) {
         'OC': '1450 540 640 360',
         'NA': '0 105 900 510'
     };
+
+    function updateInteractiveCountries() {
+        const currentView = worldMap.dataset.view; 
+        worldMap.querySelectorAll('path').forEach(target => {
+            if (currentView === 'world') {
+                target.dataset.interactive = true;
+            } 
+            else if (currentView === 'continent') {
+                if (target.dataset.continent === worldMap.dataset.selectedContinent && target.dataset.supported === 'true') {
+                    target.dataset.interactive = true;
+                }
+                else {
+                    target.dataset.interactive = false;
+                }
+            } else {
+                target.dataset.interactive = false;
+            }
+        });
+    }
+
     const mapContainer = document.getElementById('world-map-container');
 
     const originalViewBox = worldMap.getAttribute('viewBox');
 
     const backButton = document.getElementById('back-button');
     backButton.addEventListener('click', () => {
+        if (worldMap.dataset.animating === 'true') {
+            return;
+        }
+
         const currentView = worldMap.dataset.view;
 
         if (currentView === 'country') {
             clearHighlights();
             worldMap.dataset.view = 'continent';
+            updateInteractiveCountries();
             backButton.textContent = '↩ Back to World';
             const selectedContinent = worldMap.dataset.selectedContinent; 
             const coords = continentViews[selectedContinent];
@@ -31,12 +56,17 @@ export function initializeNav(worldMap, geoguessrCountries, clearHighlights) {
             clearHighlights();
             worldMap.dataset.view = 'world';
             delete worldMap.dataset.selectedContinent;
+            updateInteractiveCountries();
             animateToViewBox(worldMap, originalViewBox);
             backButton.style.display = 'none';
         }
     });
 
     worldMap.addEventListener('click', (event) => {
+        if (worldMap.dataset.animating === 'true') {
+            return;
+        }
+
         if (event.target.matches('path')) {
             const clickedCountryID = event.target.id.toUpperCase();
 
@@ -48,6 +78,8 @@ export function initializeNav(worldMap, geoguessrCountries, clearHighlights) {
                     clearHighlights();
                     worldMap.dataset.view = 'continent';
                     worldMap.dataset.selectedContinent = clickedContinent;
+                    updateInteractiveCountries();
+
                     zoomToContinent(worldMap, coords);
                     if (window.innerWidth <= 600) {
                         mapContainer.scrollLeft = (mapContainer.scrollWidth - mapContainer.clientWidth) / 2;
@@ -61,6 +93,7 @@ export function initializeNav(worldMap, geoguessrCountries, clearHighlights) {
                 if (clickedContinent === worldMap.dataset.selectedContinent) {
                     clearHighlights();
                     worldMap.dataset.view = 'country';
+                    updateInteractiveCountries();
                     const clickedCountry = event.target;
                     clickedCountry.style.removeProperty('fill');
 
@@ -70,4 +103,5 @@ export function initializeNav(worldMap, geoguessrCountries, clearHighlights) {
             }
         }
     });
+    updateInteractiveCountries();
 }

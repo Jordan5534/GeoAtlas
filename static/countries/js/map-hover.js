@@ -4,9 +4,13 @@ export function initializeMapHover(worldMap, countryData, geoguessrCountries) {
     let activeContinent = null;
     let resetTimeout = null;
     const countryPaths = worldMap.querySelectorAll('path');
+
     countryPaths.forEach((path) => {
         const currentID = path.id.toUpperCase();
+        const isSupported = Object.hasOwn(geoguessrCountries, currentID);
+        path.dataset.supported = isSupported;
         const country = countryData[currentID];
+
         if (country) {
             const currentContinent = country.continent;
             path.dataset.continent = currentContinent;
@@ -24,7 +28,7 @@ export function initializeMapHover(worldMap, countryData, geoguessrCountries) {
                     });
                     resetTimeout = null;
                     activeContinent = null;
-                }, 200);
+                }, 95);
             }   
         } else {
             if (activeCountry !== null && resetTimeout === null) {
@@ -32,7 +36,7 @@ export function initializeMapHover(worldMap, countryData, geoguessrCountries) {
                     activeCountry.style.removeProperty('fill');   
                     activeCountry = null;
                     resetTimeout = null;
-                }, 200);
+                }, 95);
             }
         }
     }
@@ -55,6 +59,10 @@ export function initializeMapHover(worldMap, countryData, geoguessrCountries) {
     }
 
     worldMap.addEventListener('mouseover', (event) => {
+        if (worldMap.dataset.animating === 'true') {
+            return;
+        }
+
         if (event.target.matches('path')) {
             const currentView = worldMap.dataset.view;
             const clickedCountryID = event.target.id.toUpperCase();
@@ -87,7 +95,7 @@ export function initializeMapHover(worldMap, countryData, geoguessrCountries) {
                         }
                         activeContinent = continent;
                         continentPaths.forEach((path) => {
-                            path.style.fill = "#D6F05C";
+                            path.style.fill = "#C8E6A1";
                         });
                     }
                 } 
@@ -103,7 +111,7 @@ export function initializeMapHover(worldMap, countryData, geoguessrCountries) {
                     activeCountry.style.removeProperty('fill');
                 }
                 activeCountry = event.target;
-                event.target.style.fill = '#D6F05C';
+                event.target.style.fill = '#C8E6A1';
             }
 
         } else {

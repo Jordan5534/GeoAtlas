@@ -1,4 +1,8 @@
+import { lockMapInteractions, unlockMapInteractions } from "./map-animation-lock.js";
+
 export function animateToViewBox(worldMap, targetViewBox) {
+    lockMapInteractions(worldMap);
+
     const startCoords = worldMap.getAttribute('viewBox').split(' ').map(Number);
     const targetCoords = targetViewBox.split(' ').map(Number);
 
@@ -21,6 +25,9 @@ export function animateToViewBox(worldMap, targetViewBox) {
 
         if (elapsed < animationDuration) {
             requestAnimationFrame(animate);
+        }
+        else { 
+            unlockMapInteractions(worldMap);
         }
     }
     requestAnimationFrame(animate);

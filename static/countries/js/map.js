@@ -1,6 +1,7 @@
 // Init map
 import { initializeMapHover } from "./map-hover.js";
 import { initializeNav } from "./map-navigation.js";
+import { initializeMapTooltip } from "./map-tooltip.js";
 
 document.addEventListener('DOMContentLoaded', () => {
     const map_container = document.getElementById('world-map-container');
@@ -24,6 +25,7 @@ document.addEventListener('DOMContentLoaded', () => {
                             worldMap.dataset.view = 'world';
                             const clearHighlights = initializeMapHover(worldMap, countryData, geoguessrCountries);
                             initializeNav(worldMap, geoguessrCountries, clearHighlights);
+                            initializeMapTooltip(worldMap, geoguessrCountries, map_container);
                         });
                 });
         });
