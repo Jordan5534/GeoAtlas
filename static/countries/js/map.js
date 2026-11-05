@@ -2,6 +2,8 @@
 import { initializeMapHover } from "./map-hover.js";
 import { initializeNav } from "./map-navigation.js";
 import { initializeMapTooltip } from "./map-tooltip.js";
+import { initializeMapLabels } from "./map-labels.js";
+import { initializeContinentOutlines } from "./map-continent-outline.js";
 
 document.addEventListener('DOMContentLoaded', () => {
     const map_container = document.getElementById('world-map-container');
@@ -26,6 +28,8 @@ document.addEventListener('DOMContentLoaded', () => {
                             const clearHighlights = initializeMapHover(worldMap, countryData, geoguessrCountries);
                             initializeNav(worldMap, geoguessrCountries, clearHighlights);
                             initializeMapTooltip(worldMap, geoguessrCountries);
+                            initializeMapLabels(worldMap);
+                            initializeContinentOutlines(worldMap);
                         });
                 });
         });

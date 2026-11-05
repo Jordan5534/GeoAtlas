@@ -63,9 +63,17 @@ body {
     transition: fill 120ms ease-out, stroke 120ms ease-out;
 }
 
+#world-map path[data-supported="false"][data-selected="true"] {
+    fill: #687883;
+}
+
 #world-map path[data-selected="true"] {
     stroke: #DCE7E5;
     stroke-width: 1px;
+}
+
+#world-map[data-view="continent"] path[data-interactive="true"]:hover {
+    stroke-width: 2.5px;
 }
 
 #world-map path[data-interactive="true"] {
@@ -83,4 +91,30 @@ body {
     font-weight: 600;
     pointer-events: none;
     z-index: 20;
+}
+
+.continent-labels {
+    fill: #B9D0DA;
+    font-size: 23px;
+    text-anchor: middle;
+    pointer-events: none;
+    letter-spacing: 1.5px;
+    font-family: sans-serif;
+    font-weight: 500;
+}
+
+#world-map[data-view="continent"] .continent-labels, #world-map[data-view="country"] .continent-labels {
+    display: none;
+}
+
+#world-map .continent-outline {
+    fill: none;
+    stroke: #C8E6A1;
+    stroke-width: 8px;
+    opacity: 0;
+    transition: opacity 120ms ease-out;
+}
+
+#world-map .continent-outline.active {
+    opacity: 1;
 }
