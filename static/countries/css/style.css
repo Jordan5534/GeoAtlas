@@ -55,11 +55,17 @@ body {
 }
 
 #world-map path {
-    stroke: #DCE7E5;
-    stroke-width: 1px;
+    fill: black;
+    stroke: black;
+    stroke-width: 0.8px;
     vector-effect: non-scaling-stroke;
     cursor: default;
-    transition: fill 120ms ease-out;
+    transition: fill 120ms ease-out, stroke 120ms ease-out;
+}
+
+#world-map path[data-selected="true"] {
+    stroke: #DCE7E5;
+    stroke-width: 1px;
 }
 
 #world-map path[data-interactive="true"] {

@@ -25,7 +25,7 @@ document.addEventListener('DOMContentLoaded', () => {
                             worldMap.dataset.view = 'world';
                             const clearHighlights = initializeMapHover(worldMap, countryData, geoguessrCountries);
                             initializeNav(worldMap, geoguessrCountries, clearHighlights);
-                            initializeMapTooltip(worldMap, geoguessrCountries, map_container);
+                            initializeMapTooltip(worldMap, geoguessrCountries);
                         });
                 });
         });

@@ -15,6 +15,16 @@ export function initializeNav(worldMap, geoguessrCountries, clearHighlights) {
     function updateInteractiveCountries() {
         const currentView = worldMap.dataset.view; 
         worldMap.querySelectorAll('path').forEach(target => {
+            if (currentView === 'continent' || currentView === 'country' ) {
+                if (target.dataset.continent === worldMap.dataset.selectedContinent) {
+                    target.dataset.selected = true;
+                }
+                else {
+                    target.dataset.selected = false;
+                }
+            } else {
+                target.dataset.selected = false;
+            }
             if (currentView === 'world') {
                 target.dataset.interactive = true;
             } 

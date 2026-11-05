@@ -1,4 +1,4 @@
-export function initializeMapTooltip(worldMap, geoguessrCountries, mapContainer) {
+export function initializeMapTooltip(worldMap, geoguessrCountries) {
     const tooltip = document.getElementById('map-tooltip');
     worldMap.addEventListener('mouseover', (event) => {
         
@@ -34,6 +34,10 @@ export function initializeMapTooltip(worldMap, geoguessrCountries, mapContainer)
     });
 
     worldMap.addEventListener('mouseleave', () => {
+        tooltip.style.display = 'none';
+    });
+
+    worldMap.addEventListener('click', () => {
         tooltip.style.display = 'none';
     });
 }   

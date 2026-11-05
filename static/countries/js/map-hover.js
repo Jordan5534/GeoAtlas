@@ -25,6 +25,7 @@ export function initializeMapHover(worldMap, countryData, geoguessrCountries) {
                     const continentPaths = worldMap.querySelectorAll(`path[data-continent='${activeContinent}'`);
                     continentPaths.forEach((target) => {
                         target.style.removeProperty('fill');
+                        target.style.removeProperty('stroke');
                     });
                     resetTimeout = null;
                     activeContinent = null;
@@ -53,6 +54,7 @@ export function initializeMapHover(worldMap, countryData, geoguessrCountries) {
         if (activeContinent != null) {
             worldMap.querySelectorAll(`path[data-continent='${activeContinent}'`).forEach((target) => {
                 target.style.removeProperty('fill');
+                target.style.removeProperty('stroke');
             });
             activeContinent = null;
         }
@@ -91,11 +93,13 @@ export function initializeMapHover(worldMap, countryData, geoguessrCountries) {
                             const previousPaths = worldMap.querySelectorAll(`path[data-continent='${activeContinent}'`);
                             previousPaths.forEach((target) => {
                                 target.style.removeProperty('fill');
+                                target.style.removeProperty('stroke');
                             });
                         }
                         activeContinent = continent;
                         continentPaths.forEach((path) => {
                             path.style.fill = "#C8E6A1";
+                            path.style.stroke = "#C8E6A1";
                         });
                     }
                 } 
@@ -104,6 +108,7 @@ export function initializeMapHover(worldMap, countryData, geoguessrCountries) {
                     const continentPaths = worldMap.querySelectorAll(`path[data-continent='${activeContinent}'`);
                     continentPaths.forEach((path) => {
                         path.style.removeProperty('fill');
+                        path.style.removeProperty('stroke');
                     });
                     activeContinent = null;     
                 }
