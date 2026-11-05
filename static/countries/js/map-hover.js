@@ -1,6 +1,12 @@
+import { initializeCountryHover } from "./map-country-hover.js";
+import { initializeContinentHover } from "./map-continent-hover.js";
 
 // Hover Logic
 export function initializeMapHover(worldMap, countryData, geoguessrCountries) {
+    // Get functions from country hover and continent hover
+    const {showCountryHover, clearCountryHover} = initializeCountryHover(worldMap);
+    const {showContinentHover, clearContinentHover} = initializeContinentHover(worldMap);
+
     // Track which country and continent are currently highlighted
     let activeCountry = null;
     let activeContinent = null;
@@ -40,6 +46,7 @@ export function initializeMapHover(worldMap, countryData, geoguessrCountries) {
         if (currentView === 'world') {
             if (activeContinent && resetTimeout === null) {
                 resetTimeout = setTimeout(() => {
+                    clearContinentHover();
                     // Find all cloned continent outline paths
                     const outlinePaths = worldMap.querySelectorAll('#continent-outline-layer .continent-outline');
 
@@ -58,6 +65,7 @@ export function initializeMapHover(worldMap, countryData, geoguessrCountries) {
             if (activeCountry !== null && resetTimeout === null) {
                 resetTimeout = setTimeout(() => {
                     activeCountry.style.removeProperty('stroke');
+                    clearCountryHover();
 
                     // Reset the active country and timeout
                     activeCountry = null;
@@ -78,11 +86,13 @@ export function initializeMapHover(worldMap, countryData, geoguessrCountries) {
         // Remove the highlighted country's stroke
         if (activeCountry != null) {
             activeCountry.style.removeProperty('stroke');
+            clearCountryHover();
             activeCountry = null;
         }
 
         // Remove the active continent's outline
         if (activeContinent != null) {
+            clearContinentHover();
             const outlinePaths = worldMap.querySelectorAll('#continent-outline-layer .continent-outline');
 
             outlinePaths.forEach((path) => {
@@ -146,10 +156,7 @@ export function initializeMapHover(worldMap, countryData, geoguessrCountries) {
                         }
 
                         // Activate the hovered continent's outline
-                        const selectedOutlines = worldMap.querySelectorAll(`#continent-outline-layer .continent-outline[data-outline-continent='${continent}'`);
-                        selectedOutlines.forEach((path) => {
-                            path.classList.add('active');
-                        });
+                        showContinentHover(continent);
 
                         // Remember which continent is currently hovered
                         activeContinent = continent;
@@ -166,6 +173,7 @@ export function initializeMapHover(worldMap, countryData, geoguessrCountries) {
                 // Highlight the currently hovered country with a green stroke
                 activeCountry = event.target;
                 event.target.style.stroke = '#C8E6A1';
+                showCountryHover(event.target);
             }
 
         } else {

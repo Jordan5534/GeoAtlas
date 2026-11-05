@@ -78,6 +78,8 @@ body {
 
 #world-map path[data-interactive="true"] {
     cursor: pointer;
+    transform-box: fill-box;
+    transform-origin: center;
 }
 
 #map-tooltip {
@@ -117,4 +119,46 @@ body {
 
 #world-map .continent-outline.active {
     opacity: 1;
+}
+
+@keyframes country-pop {
+    from {
+        transform: scale(1);
+    }
+
+    to {
+        transform: scale(1.05);
+    }
+}
+
+@keyframes continent-pop {
+    from {
+        transform: scale(1);
+    }
+
+    to {
+        transform: scale(1.03);
+    }
+}
+
+#world-map .country-hover-clone {
+    transform-box: fill-box;
+    transform-origin: center;
+    animation: country-pop 200ms ease-out;
+    animation-fill-mode: forwards;
+}
+
+#world-map .continent-hover-group {
+    transform-box: fill-box;
+    transform-origin: center;
+    animation: continent-pop 200ms ease-out;
+    animation-fill-mode: forwards;
+}
+
+#world-map .continent-hover-group[data-hover-continent="OC"] {
+    transform-origin: 80% 50%;
+}
+
+#world-map .continent-hover-group[data-hover-continent="AS"] {
+    transform-origin: 80% 50%;
 }
