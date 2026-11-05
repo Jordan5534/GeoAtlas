@@ -131,6 +131,26 @@ body {
     }
 }
 
+@keyframes continent-shrink {
+    from {
+        transform: scale(1.03);
+    }
+
+    to {
+        transform: scale(1);
+    }
+}
+
+@keyframes country-shrink {
+    from {
+        transform: scale(1.05);
+    }
+
+    to {
+        transform: scale(1);
+    }
+}
+
 @keyframes continent-pop {
     from {
         transform: scale(1);
@@ -146,6 +166,7 @@ body {
     transform-origin: center;
     animation: country-pop 200ms ease-out;
     animation-fill-mode: forwards;
+    filter: drop-shadow(0px 4px 5px rgba(0, 0, 0, 0.5));
 }
 
 #world-map .continent-hover-group {
@@ -161,4 +182,18 @@ body {
 
 #world-map .continent-hover-group[data-hover-continent="AS"] {
     transform-origin: 80% 50%;
+}
+
+#world-map .country-hover-clone.shrinking {
+    animation: country-shrink 200ms ease-out;
+    animation-fill-mode: forwards;
+}
+
+#world-map .continent-hover-group.shrinking {
+    animation: continent-shrink 200ms ease-out;
+    animation-fill-mode: forwards;
+}
+
+#world-map .continent-hover-group.shrinking .continent-outline {
+    opacity: 0;
 }
