@@ -64,11 +64,11 @@ body {
 }
 
 #world-map path[data-supported="false"][data-selected="true"] {
-    fill: #687883;
+    fill: #94A5B0;
 }
 
 #world-map path[data-selected="true"] {
-    stroke: #FFFFFF;
+    stroke: #526D7C;
     stroke-width: 1px;
 }
 
