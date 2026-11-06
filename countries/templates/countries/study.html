@@ -1,0 +1,54 @@
+{% load static %}
+
+<div id="study-container">
+    <header>
+        <div id="study-header-top">
+            <button type="button" id="study-back-button">← Back to Map</button>
+            <h1 id="study-country-name">Nigeria</h1>
+        </div>
+        <nav id="study-mode-nav">
+            <button type="button" id="identify-mode-button">Identify Country</button>
+            <button type="button" id="region-mode-button">Region Guessing</button>
+        </nav>
+    </header>
+
+    <main id="study-main">
+        <aside id="study-sidebar">
+            <h2>Sections</h2>
+            <button type="button" id="add-section-button">+ Add Section</button>
+            <form id="new-section-form">
+                <input type="text" id="new-section-name" placeholder="Section Name..." maxlength="60">
+            </form>
+            <div id="study-section-list">
+                <button type="button" class="study-section-button active">Cars</button>
+                <button type="button" class="study-section-button">Roads</button>
+                <button type="button" class="study-section-button">Vegetation</button>
+            </div>
+        </aside>
+        <section id="study-content">
+            <div id="study-content-header">
+                <h2 id="study-section-title">Cars</h2>
+                <button type="button" id="add-note-button">+ Add Note</button>
+            </div>
+            <form id="study-note-form">
+                <input type="text" id="new-note-title" placeholder="Note title...">
+                <textarea id="new-note-description" placeholder="Write your clue here..."></textarea>
+                <input type="file" id="new-note-image" accept="image/*">
+                <div id="study-note-actions">
+                    <label for="new-note-image" class="note-image-label">Add Image</label>
+                    <div id="study-note-buttons">
+                        <button type="button" id="cancel-note-button">Cancel</button>
+                        <button type="submit" id="save-note-button">Save</button>
+                    </div>
+                </div>
+            </form>
+            <div id="study-note-list">
+                <article class="study-note">
+                    <h3>Police Follow Car</h3>
+                    <p>In Nigeria in alot of the coverage you will have a police car following.</p>
+                    <img class="study-note-image" src="{% static 'countries/images/nigeria_follow_car_1.png' %}" alt="Police follow car in Nigeria">
+                </article>
+            </div>
+        </section>
+    </main>
+</div>

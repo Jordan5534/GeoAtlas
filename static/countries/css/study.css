@@ -1,0 +1,296 @@
+#study-container {
+    position: fixed;
+    inset: 0;
+    z-index: 100;
+    background-color: #212121;
+    overflow-y: auto;
+    color: white;
+    font-family: Arial, sans-serif;
+}
+
+#study-container header {
+    background-color: #173D56;
+    color: white;
+    padding: 16px 24px;
+}
+
+#study-header-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+#study-mode-nav {
+    display: flex;
+    gap: 10px;
+    margin-top: 8px;
+}
+
+#identify-mode-button, #region-mode-button {
+    flex: 1;
+    background-color: transparent;
+    color: white;
+    border: 1px solid #7896A8;
+    border-radius: 8px;
+    padding: 12px 15px;
+    font-size: 15px;
+    cursor: pointer;
+}
+
+#identify-mode-button {
+    background-color: #285B78;
+}
+
+#study-back-button {
+    background: none;
+    color: white;
+    border: none;
+    padding: 0;
+    font-size: 17.5px;
+    font-weight: 400;
+    cursor: pointer;
+}
+
+#study-country-name {
+    margin: 0;
+    font-size: 26px;
+    font-family: Arial, sans-serif;
+    font-weight: 600;
+}
+
+#study-main {
+    display: flex;
+    min-height: calc(100dvh - 100px);
+}
+
+#study-sidebar {
+    width: 15%;
+    background-color: #2D2D2D;
+    box-sizing: border-box;
+    min-width: 220px;
+    max-width: 300px;
+    padding: 20px;
+}
+
+#study-content {
+    flex: 1;
+    padding: 25px;
+}
+
+#new-section-name {
+    width: 100%;
+    box-sizing: border-box;
+    background-color: #414141;
+    color: white;
+    border: 1px solid #7896A8;
+    border-radius: 8px;
+    padding: 12px 10px;
+    font-size: 14px;
+    margin-top: 10px;
+}
+
+#new-section-name:focus-visible {
+    outline: 2px solid #7896A8;
+}
+
+.study-section-button {
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
+    background-color: transparent;
+    color: #DDDDDD;
+    border: none;
+    border-radius: 8px;
+    padding: 12px 10px;
+    text-align: left;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.study-section-button:hover {
+    background-color: #414141;
+}
+
+.study-section-button.active {
+    background-color: #414141;
+    color: white;
+    font-weight: 600;
+}
+
+#study-section-list {
+    margin-top: 15px;
+}
+
+#study-content-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    max-width: 800px;
+    width: 100%;
+    margin-inline: auto;
+}
+
+#study-section-title {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    font-size: 26px;
+    font-weight: 600;
+}
+
+#add-section-button {
+    width: 100%;
+    padding: 12px 10px;
+}
+
+#add-note-button {
+    padding: 12px 18px;
+}
+
+#add-section-button, #add-note-button {
+    background-color: #285B78;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 200ms ease;
+}
+
+#add-section-button:hover, #add-note-button:hover {
+    background-color: #367394;
+}
+
+#study-note-form {
+    background-color: #303030;
+    border-radius: 10px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    max-width: 800px;
+    width: 100%;
+    margin-inline: auto;
+    box-sizing: border-box;
+}
+
+#new-note-title, #new-note-description {
+    background-color: #414141;
+    color: white;
+    border: 1px solid #555555;
+    border-radius: 8px;
+    padding: 12px;
+    font-size: 15px;
+    font-family: Arial, sans-serif;
+    box-sizing: border-box;
+    width: 100%;
+}
+
+#new-note-description {
+    min-height: 160px;
+    resize: none;
+}
+
+#new-note-image {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    opacity: 0;
+}
+
+.note-image-label {
+    display: inline-flex;
+    align-items: center;
+    color: #CCCCCC;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    width: fit-content;
+    transition: color 200ms ease;
+}
+
+.note-image-label:hover {
+    color: white;
+}
+
+#study-note-actions {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+}
+
+#study-note-buttons {
+    display: flex;
+    gap: 10px;
+}
+
+#cancel-note-button, #save-note-button {
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 10px 16px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 200ms ease;
+}
+
+#cancel-note-button {
+    background-color: #414141;
+}
+
+#cancel-note-button:hover {
+    background-color: #555555;
+}
+
+#save-note-button {
+    background-color: #285B78;
+}
+
+#save-note-button:hover {
+    background-color: #367394;
+}
+
+#study-note-list {
+    max-width: 800px;
+    width: 100%;
+    margin-inline: auto;
+    box-sizing: border-box;
+    margin-top: 20px;
+}
+
+.study-note {
+    background-color: #303030;
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 15px;
+}
+
+.study-note h3 {
+    margin: 0 0 12px 0;
+    font-size: 19px;
+    font-weight: 600;
+    color: white;
+}
+
+.study-note p {
+    margin: 0;
+    font-size: 15px;
+    line-height: 1.6;
+    color: #CCCCCC;
+    white-space: pre-wrap;
+}
+
+.study-note-image {
+    display: block;
+    max-width: 100%;
+    max-height: 300px;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    border-radius: 8px;
+    margin-top: 15px;
+    margin-inline: auto;
+}
