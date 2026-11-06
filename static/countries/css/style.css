@@ -1,5 +1,5 @@
 body {
-    background-color: #78B9D4;
+    background-color: #77D3E7;
     overflow-y: hidden;
     margin: 0;
 }
@@ -68,11 +68,12 @@ body {
 }
 
 #world-map path[data-selected="true"] {
-    stroke: #DCE7E5;
+    stroke: #FFFFFF;
     stroke-width: 1px;
 }
 
 #world-map[data-view="continent"] path[data-interactive="true"]:hover {
+    stroke: #FFFFFF;
     stroke-width: 2.5px;
 }
 
@@ -111,8 +112,8 @@ body {
 
 #world-map .continent-outline {
     fill: none;
-    stroke: #C8E6A1;
-    stroke-width: 8px;
+    stroke: #FFFFFF;
+    stroke-width: 6px;
     opacity: 0;
     transition: opacity 120ms ease-out;
 }
@@ -167,6 +168,14 @@ body {
     animation: country-pop 200ms ease-out;
     animation-fill-mode: forwards;
     filter: drop-shadow(0px 4px 5px rgba(0, 0, 0, 0.5));
+}
+
+#world-map .country-hover-clone[data-hover-country="ru"] {
+    transform-origin: 68% 50%;
+}
+
+#world-map .country-hover-clone[data-hover-country="fr"] {
+    transform-origin: 90% 25%;
 }
 
 #world-map .continent-hover-group {

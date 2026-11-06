@@ -172,7 +172,7 @@ export function initializeMapHover(worldMap, countryData, geoguessrCountries) {
 
                 // Highlight the currently hovered country with a green stroke
                 activeCountry = event.target;
-                event.target.style.stroke = '#C8E6A1';
+                event.target.style.stroke = '#FFFFFF';
                 showCountryHover(event.target);
             }
 

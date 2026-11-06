@@ -31,6 +31,9 @@ export function initializeCountryHover(worldMap) {
         const clonedPath = countryPath.cloneNode(true);
         clonedPath.removeAttribute('id');
         clonedPath.classList.add('country-hover-clone');
+
+        clonedPath.dataset.hoverCountry = countryPath.id;
+
         hoverLayer.appendChild(clonedPath);
 
         // Remember the enlarged clone so we can shrink it later.
