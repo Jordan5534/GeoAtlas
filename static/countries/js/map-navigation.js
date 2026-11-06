@@ -12,6 +12,18 @@ export function initializeNav(worldMap, geoguessrCountries, clearHighlights) {
         'NA': '0 105 900 510'
     };
 
+    function openCountry(countryPath) {
+        clearHighlights();
+        backButton.style.display = 'block';
+        worldMap.dataset.selectedContinent = countryPath.dataset.continent;
+        worldMap.dataset.view = 'country';
+        updateInteractiveCountries();
+        countryPath.style.removeProperty('fill');
+
+        backButton.textContent = '↩ Back to Continent';
+        zoomToCountry(worldMap, countryPath);
+    }
+
     function updateInteractiveCountries() {
         const currentView = worldMap.dataset.view; 
         worldMap.querySelectorAll('path').forEach(target => {
@@ -101,17 +113,11 @@ export function initializeNav(worldMap, geoguessrCountries, clearHighlights) {
                     return;
                 }
                 if (clickedContinent === worldMap.dataset.selectedContinent) {
-                    clearHighlights();
-                    worldMap.dataset.view = 'country';
-                    updateInteractiveCountries();
-                    const clickedCountry = event.target;
-                    clickedCountry.style.removeProperty('fill');
-
-                    backButton.textContent = '↩ Back to Continent';
-                    zoomToCountry(worldMap, event.target);
+                    openCountry(event.target);
                 }
             }
         }
     });
     updateInteractiveCountries();
+    return openCountry;
 }

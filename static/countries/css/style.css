@@ -206,3 +206,56 @@ body {
 #world-map .continent-hover-group.shrinking .continent-outline {
     opacity: 0;
 }
+
+#search-container {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 10;
+    width: 300px;
+}
+
+#country-search{
+    width: 100%;
+    box-sizing: border-box;
+    background-color: #173D56;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 12px 15px;
+    font-size: 15px;
+    outline: none;
+}
+
+#country-search:focus-visible {
+    outline: 2px solid white;
+}
+
+#search-results {
+    background-color: #173D56;
+    border-radius: 8px;
+    margin-top: 5px;
+    overflow: hidden;
+    max-height: 250px;
+    overflow-y: auto;
+}
+
+.search-result {
+    display: block;
+    width: 100%;
+    background-color: #173D56;
+    color: white;
+    border: none;
+    padding: 12px 15px;
+    text-align: left;
+    font-size: 15px;
+    cursor: pointer;
+}
+
+.search-result:hover {
+    background-color: #285B78;
+}
+
+body:has(#world-map[data-view="country"]) #search-container {
+    display: none;
+}
