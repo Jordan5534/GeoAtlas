@@ -33,6 +33,7 @@
             <form id="study-note-form">
                 <input type="text" id="new-note-title" placeholder="Note title...">
                 <textarea id="new-note-description" placeholder="Write your clue here..."></textarea>
+                <img id="note-image-preview" src="{% static 'countries/images/nigeria_follow_car_1.png' %}" alt="Image Preview">
                 <input type="file" id="new-note-image" accept="image/*">
                 <div id="study-note-actions">
                     <label for="new-note-image" class="note-image-label">Add Image</label>
@@ -44,10 +45,20 @@
             </form>
             <div id="study-note-list">
                 <article class="study-note">
-                    <h3>Police Follow Car</h3>
+                    <div class="study-note-header">
+                        <h3>Police Follow Car</h3>
+                        <div class="study-note-controls">
+                            <button type="button" class="edit-note-button">Edit</button>
+                            <button type="button" class="delete-note-button">Delete</button>
+                        </div>
+                    </div>
                     <p>In Nigeria in alot of the coverage you will have a police car following.</p>
                     <img class="study-note-image" src="{% static 'countries/images/nigeria_follow_car_1.png' %}" alt="Police follow car in Nigeria">
                 </article>
+                <div id="study-empty-state">
+                    <h3>No notes yet</h3>
+                    <p>Add your first clue to start studying this section</p>
+                </div>
             </div>
         </section>
     </main>
